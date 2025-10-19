@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotFound from "./pages/NotFound";
 
 function PrivateRoute({ children }) {
   const { user } = useContext(AuthContext);
@@ -30,6 +31,9 @@ function App() {
       />
       <Route path="/create-task" element={<TaskForm />} />
       <Route path="/edit-task/:id" element={<EditTask />} />
+
+      {/* ✅ Fallback route - must be last */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
