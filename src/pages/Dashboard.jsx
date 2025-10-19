@@ -13,9 +13,14 @@ function Dashboard() {
   const [loading, setLoading] = useState(false);
 
   const fetchTasks = async () => {
-    const res = await axiosInstance.get(`tasks/?page=${page}`);
-    setTasks(res.data.results);
-    setPage(res.data.count);
+    try {
+      const res = await axiosInstance.get(`tasks/?page=${page}`);
+      console.log("Fetched:", res.data);
+      setTasks(res.data.results);
+      setPage(res.data.count);
+    } catch (err) {
+      console.error("Error fetching tasks:", err);
+    }
     setLoading(false);
   };
 
